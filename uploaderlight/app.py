@@ -24,7 +24,7 @@ def allowed_file(filename):
 @app.route('/' , methods=['GET', 'POST'])
 def upload():
     form = PostForm()
-    if request.method == 'POST':
+    if form.validate_on_submit():
         if 'file' not in request.files:
             flash('No file part', 'danger')
             return redirect(request.url)
@@ -36,6 +36,8 @@ def upload():
             filename = secrets.token_hex(3) + secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file', filename=filename))
+        else:
+            flash('Bad forms' ,'danger')
     return render_template('upload.html',title="Home", form=form)
 
 @app.route('/uploads/<filename>')
