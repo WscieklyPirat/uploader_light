@@ -11,8 +11,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'static/uploads/')
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SECRET_KEY'] = 'a238f7f5f5f9094b5245bbc219b82cc762915de2140cfdc6'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SECRET_KEY'] = ''
 csrf = CSRFProtect(app)
 
 class PostForm(FlaskForm):
